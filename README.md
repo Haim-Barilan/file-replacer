@@ -1,2 +1,2 @@
 # file-replacer
-.NET MAUI file replacer - replace file recursively on a specific folder and sub-folders. 
+.NET C# WinForm file replacer - replace file recursively on a specific folder and sub-folders. 
