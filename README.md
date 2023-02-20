@@ -17,4 +17,4 @@
 
 
 ## Quick usage
-If you don't want to download and compile, grab the zip file from [Here](https://github.com/Haim-Barilan/file-replacer/blob/main/blob/file-replacer.zip) and run file-replacer.exe
+If you don't want to build the solution you can grab the zip file from [Here](https://github.com/Haim-Barilan/file-replacer/blob/main/blob/file-replacer.zip) and run file-replacer.exe
