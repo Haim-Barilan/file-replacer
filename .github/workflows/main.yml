@@ -4,7 +4,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      #- 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
  
 jobs:
   build:
@@ -35,10 +35,15 @@ jobs:
       env:
        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
  
+    - uses: vimtor/action-zip@v1
+      with:
+        files: src\file-replacer\bin\Release
+        dest: file-replacer.zip
+          
     - name: Release with Notes
       uses: softprops/action-gh-release@v1
       with:
-        files: src\file-replacer\bin\Release
+        files: file-replacer.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
