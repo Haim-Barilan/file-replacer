@@ -7,7 +7,7 @@
 - Select destination dirctory - Selected root directory to apply the replace proceadure.
 - Recursive checkbox - checked run recursively on all sub-dirctories, unchecked on the selected directory only.
 - Backup original files checkbox - checked will save the orginal file with timestamp, unchecked override the original file with no backup.
-- Click "REPLACE ALL FILES" - log messages will apear on the white box.
+- Click "REPLACE ALL FILES" - log messages will appear on the white box.
 
 
 <br/>
