@@ -3,10 +3,12 @@ using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace file_replacer
     public partial class Form1 : MaterialForm
     {
         public static ListBoxLog listBoxLog;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace file_replacer
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             listBoxLog = new ListBoxLog(loggerListBox);
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            this.destTextField.Text = ConfigurationSettings.AppSettings.Get("defaultLocation");
         }
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
@@ -42,9 +46,9 @@ namespace file_replacer
                 listBoxLog.Log(Level.Error, $"Directory {directoryToTraverse} not exists");
                 return;
             }
-            List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile));
+            List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile), this.recursiveCheckBox.Enabled);
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            listBoxLog.Log(Level.Info, $"Process started. Timestamp on the files is {timeStamp}");
+            listBoxLog.Log(Level.Info, $"Process started{(this.recursiveCheckBox.Enabled ? " recursively" : "")}. Timestamp on the files is {timeStamp}");
             foreach (string targetFile in filesToReplace)
             {
                 try
@@ -63,16 +67,17 @@ namespace file_replacer
 
         }
 
-        static List<string> GetFiles(string directoryPath, string fileName)
+        static List<string> GetFiles(string directoryPath, string fileName, bool isRecursive)
         {
             var fileList = new List<string>();
-            foreach (var subDir in Directory.GetDirectories(directoryPath))
+            if (isRecursive)
             {
-                fileList.AddRange(GetFiles(subDir, fileName));
+                foreach (var subDir in Directory.GetDirectories(directoryPath))
+                {
+                    fileList.AddRange(GetFiles(subDir, fileName, isRecursive));
+                }
             }
-
             fileList.AddRange(Directory.GetFiles(directoryPath, fileName));
-
             return fileList;
         }
 

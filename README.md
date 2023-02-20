@@ -3,8 +3,9 @@
 
 ## How to use
 - Open the application
-- Select the source file - You should use full file name and path including extension.
-- Select destination dirctory - This is a recursive opeation so all files in sub folders will be replaced as well.
+- Select the source file - Use full file name and path including extension.
+- Select destination dirctory - Selected root directory to apply the replace proceadure.
+- Check/Uncheck Recursive checkbox - checked run recursively on all sub-dirctories, unchecked on the selected directory only.
 - Click "REPLACE ALL FILES" - log messages will apear on the white box.
 
 

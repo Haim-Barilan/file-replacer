@@ -34,6 +34,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.loggerListBox = new System.Windows.Forms.ListBox();
+            this.recursiveCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // sourceTextField
@@ -68,7 +69,7 @@
             // 
             this.destTextField.Depth = 0;
             this.destTextField.Hint = "";
-            this.destTextField.Location = new System.Drawing.Point(205, 161);
+            this.destTextField.Location = new System.Drawing.Point(205, 148);
             this.destTextField.MouseState = MaterialSkin.MouseState.HOVER;
             this.destTextField.Name = "destTextField";
             this.destTextField.PasswordChar = '\0';
@@ -77,7 +78,6 @@
             this.destTextField.SelectionStart = 0;
             this.destTextField.Size = new System.Drawing.Size(234, 23);
             this.destTextField.TabIndex = 2;
-            this.destTextField.Text = "C:\\portalpms";
             this.destTextField.UseSystemPasswordChar = false;
             // 
             // materialLabel1
@@ -86,7 +86,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(34, 163);
+            this.materialLabel1.Location = new System.Drawing.Point(34, 150);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(84, 19);
@@ -98,7 +98,7 @@
             this.materialFlatButton1.AutoSize = true;
             this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(152, 223);
+            this.materialFlatButton1.Location = new System.Drawing.Point(152, 228);
             this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButton1.Name = "materialFlatButton1";
@@ -114,16 +114,35 @@
             this.loggerListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.loggerListBox.Enabled = false;
             this.loggerListBox.FormattingEnabled = true;
-            this.loggerListBox.Location = new System.Drawing.Point(25, 278);
+            this.loggerListBox.Location = new System.Drawing.Point(27, 286);
             this.loggerListBox.Name = "loggerListBox";
             this.loggerListBox.Size = new System.Drawing.Size(431, 143);
             this.loggerListBox.TabIndex = 100;
+            // 
+            // recursiveCheckBox
+            // 
+            this.recursiveCheckBox.AutoSize = true;
+            this.recursiveCheckBox.Checked = true;
+            this.recursiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.recursiveCheckBox.Depth = 0;
+            this.recursiveCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.recursiveCheckBox.Location = new System.Drawing.Point(27, 192);
+            this.recursiveCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.recursiveCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.recursiveCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.recursiveCheckBox.Name = "recursiveCheckBox";
+            this.recursiveCheckBox.Ripple = true;
+            this.recursiveCheckBox.Size = new System.Drawing.Size(90, 30);
+            this.recursiveCheckBox.TabIndex = 5;
+            this.recursiveCheckBox.Text = "Recursive";
+            this.recursiveCheckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 441);
+            this.Controls.Add(this.recursiveCheckBox);
             this.Controls.Add(this.loggerListBox);
             this.Controls.Add(this.materialFlatButton1);
             this.Controls.Add(this.materialLabel1);
@@ -145,6 +164,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private System.Windows.Forms.ListBox loggerListBox;
+        private MaterialSkin.Controls.MaterialCheckBox recursiveCheckBox;
     }
 }
 
