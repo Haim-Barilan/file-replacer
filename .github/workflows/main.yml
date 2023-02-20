@@ -2,9 +2,8 @@ name: Build Web App
  
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    #tags:
-    #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
  
 jobs:
   build:
@@ -35,17 +34,18 @@ jobs:
       env:
        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
  
-    - uses: vimtor/action-zip@v1
+    - name: Zip release files
+      uses: vimtor/action-zip@v1
       with:
         files: src\file-replacer\bin\Release
         dest: file-replacer.zip
           
     - name: Release with Notes
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v1 #https://github.com/actions/create-release#example-workflow---create-a-release
       with:
         files: file-replacer.zip
-        tag_name: v1.0.2
-        name: Release v1.0.2
+        tag_name: ${{ github.ref }}
+        name: Release ${{ github.ref }}
         body: |
             Changes in this Release
             - First Change
