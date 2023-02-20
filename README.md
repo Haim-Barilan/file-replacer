@@ -1,11 +1,11 @@
 # File Replacer
-.NET C# WinForms | File replacer application - replace file recursively on a specific directory. 
+.NET C# WinForms | File replacer application - replace file recursively on a specific folder. 
 
 ## How to use the application
 - Open the application
 - Select the source file - Use full file name and path including extension.
-- Select destination dirctory - Selected root directory to apply the replace proceadure.
-- Recursive checkbox - checked run recursively on all sub-dirctories, unchecked on the selected directory only.
+- Select destination folder - Selected root folder to apply the replace proceadure.
+- Recursive checkbox - checked run recursively on all sub-folders, unchecked on the selected folder only.
 - Backup original files checkbox - checked will save the orginal file with timestamp, unchecked override the original file with no backup.
 - Click "REPLACE ALL FILES" - log messages will appear on the white box.
 
