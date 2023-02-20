@@ -28,9 +28,9 @@ jobs:
       run: msbuild src\file-replacer.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
  
     - name: Release with Notes
-        uses: softprops/action-gh-release@v1
-        with:
-          files: src\file-replacer\bin\Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
+      with:
+        files: src\file-replacer\bin\Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
