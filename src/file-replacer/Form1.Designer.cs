@@ -35,6 +35,7 @@
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.loggerListBox = new System.Windows.Forms.ListBox();
             this.recursiveCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
+            this.backupCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // sourceTextField
@@ -98,7 +99,7 @@
             this.materialFlatButton1.AutoSize = true;
             this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(152, 228);
+            this.materialFlatButton1.Location = new System.Drawing.Point(322, 241);
             this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButton1.Name = "materialFlatButton1";
@@ -126,7 +127,7 @@
             this.recursiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.recursiveCheckBox.Depth = 0;
             this.recursiveCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.recursiveCheckBox.Location = new System.Drawing.Point(27, 192);
+            this.recursiveCheckBox.Location = new System.Drawing.Point(28, 197);
             this.recursiveCheckBox.Margin = new System.Windows.Forms.Padding(0);
             this.recursiveCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.recursiveCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -137,11 +138,30 @@
             this.recursiveCheckBox.Text = "Recursive";
             this.recursiveCheckBox.UseVisualStyleBackColor = true;
             // 
+            // backupCheckBox
+            // 
+            this.backupCheckBox.AutoSize = true;
+            this.backupCheckBox.Checked = true;
+            this.backupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.backupCheckBox.Depth = 0;
+            this.backupCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.backupCheckBox.Location = new System.Drawing.Point(28, 227);
+            this.backupCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.backupCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.backupCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.backupCheckBox.Name = "backupCheckBox";
+            this.backupCheckBox.Ripple = true;
+            this.backupCheckBox.Size = new System.Drawing.Size(155, 30);
+            this.backupCheckBox.TabIndex = 6;
+            this.backupCheckBox.Text = "Backup original files";
+            this.backupCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 441);
+            this.Controls.Add(this.backupCheckBox);
             this.Controls.Add(this.recursiveCheckBox);
             this.Controls.Add(this.loggerListBox);
             this.Controls.Add(this.materialFlatButton1);
@@ -165,6 +185,7 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private System.Windows.Forms.ListBox loggerListBox;
         private MaterialSkin.Controls.MaterialCheckBox recursiveCheckBox;
+        private MaterialSkin.Controls.MaterialCheckBox backupCheckBox;
     }
 }
 

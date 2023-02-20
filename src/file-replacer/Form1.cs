@@ -48,12 +48,16 @@ namespace file_replacer
             }
             List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile), this.recursiveCheckBox.Enabled);
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            listBoxLog.Log(Level.Info, $"Process started{(this.recursiveCheckBox.Enabled ? " recursively" : "")}. Timestamp on the files is {timeStamp}");
+            listBoxLog.Log(Level.Info, $"Process started{(this.recursiveCheckBox.Enabled ? " recursively" : "")}");
+            listBoxLog.Log(Level.Info, $"Backup is {(this.backupCheckBox.Enabled ? $"Enabled. Original files will be saved with timestamp {timeStamp}" : "Disabled. Original files will not be saved")}");
             foreach (string targetFile in filesToReplace)
             {
                 try
                 {
-                    File.Copy(targetFile, targetFile + timeStamp, true);
+                    if (this.backupCheckBox.Enabled)
+                    {
+                        File.Copy(targetFile, targetFile + timeStamp, true);
+                    }
                     File.Copy(sourceFile, targetFile, true);
                     listBoxLog.Log(Level.Info, $"{targetFile} replaced");
                 }
