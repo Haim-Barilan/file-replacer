@@ -44,6 +44,7 @@ namespace file_replacer
             }
             List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile));
             string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            listBoxLog.Log(Level.Info, $"Process started. Timestamp on the files is {timeStamp}");
             foreach (string targetFile in filesToReplace)
             {
                 try
