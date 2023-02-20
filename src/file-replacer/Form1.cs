@@ -34,41 +34,54 @@ namespace file_replacer
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            string sourceFile = this.sourceTextField.Text;
-            if (!File.Exists(sourceFile))
+            this.Cursor = Cursors.WaitCursor;
+            try
             {
-                listBoxLog.Log(Level.Error, $"File {sourceFile} not exists");
-                return;
-            }
-            string directoryToTraverse = this.destTextField.Text;
-            if (!Directory.Exists(directoryToTraverse))
-            {
-                listBoxLog.Log(Level.Error, $"Directory {directoryToTraverse} not exists");
-                return;
-            }
-            List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile), this.recursiveCheckBox.Enabled);
-            string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            listBoxLog.Log(Level.Info, $"Process started{(this.recursiveCheckBox.Enabled ? " recursively" : "")}");
-            listBoxLog.Log(Level.Info, $"Backup is {(this.backupCheckBox.Enabled ? $"Enabled. Original files will be saved with timestamp {timeStamp}" : "Disabled. Original files will not be saved")}");
-            foreach (string targetFile in filesToReplace)
-            {
-                try
+                string sourceFile = this.sourceTextField.Text;
+                if (!File.Exists(sourceFile))
                 {
-                    if (this.backupCheckBox.Enabled)
+                    listBoxLog.Log(Level.Error, $"File {sourceFile} not exists");
+                    this.Cursor = Cursors.Default;
+                    return;
+                }
+                string directoryToTraverse = this.destTextField.Text;
+                if (!Directory.Exists(directoryToTraverse))
+                {
+                    listBoxLog.Log(Level.Error, $"Directory {directoryToTraverse} not exists");
+                    this.Cursor = Cursors.Default;
+                    return;
+                }
+                List<string> filesToReplace = GetFiles(directoryToTraverse, Path.GetFileName(sourceFile), this.recursiveCheckBox.Enabled);
+                string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                listBoxLog.Log(Level.Info, $"Process started{(this.recursiveCheckBox.Enabled ? " recursively" : "")}");
+                listBoxLog.Log(Level.Info, $"Backup is {(this.backupCheckBox.Enabled ? $"Enabled. Original files will be saved with timestamp {timeStamp}" : "Disabled. Original files will not be saved")}");
+                listBoxLog.Log(Level.Info, $"Total files that will be impacted is {filesToReplace.Count}");
+                foreach (string targetFile in filesToReplace)
+                {
+                    try
                     {
-                        File.Copy(targetFile, targetFile + timeStamp, true);
+                        if (this.backupCheckBox.Enabled)
+                        {
+                            File.Copy(targetFile, targetFile + timeStamp, true);
+                        }
+                        File.Copy(sourceFile, targetFile, true);
+                        listBoxLog.Log(Level.Info, $"{targetFile} replaced");
                     }
-                    File.Copy(sourceFile, targetFile, true);
-                    listBoxLog.Log(Level.Info, $"{targetFile} replaced");
+                    catch (Exception ex)
+                    {
+                        listBoxLog.Log(Level.Error, $"Faild to copy {targetFile}");
+                        listBoxLog.Log(Level.Error, $"{ex.Message}");
+                        listBoxLog.Log(Level.Error, $"{ex.StackTrace}");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    listBoxLog.Log(Level.Error, $"Faild to copy {targetFile}");
-                    listBoxLog.Log(Level.Error, $"{ex.Message}");
-                    listBoxLog.Log(Level.Error, $"{ex.StackTrace}");
-                }
+                listBoxLog.Log(Level.Info, $"Process Completed");
             }
-
+            catch (Exception ex)
+            {
+                listBoxLog.Log(Level.Error, $"{ex.Message}");
+                listBoxLog.Log(Level.Error, $"{ex.StackTrace}");
+            }
+            this.Cursor = Cursors.Default;
         }
 
         static List<string> GetFiles(string directoryPath, string fileName, bool isRecursive)
