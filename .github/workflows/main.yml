@@ -1,0 +1,36 @@
+name: Build Web App
+ 
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+ 
+jobs:
+  build:
+ 
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v1
+      name: Checkout Code
+     
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
+       
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+     
+    - name: Restore NuGet Packages
+      run: nuget restore src\file-replacer.sln
+ 
+    - name: Build and Publish Web App
+      run: msbuild src\file-replacer.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+ 
+    - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          files: src\file-replacer\bin\Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
