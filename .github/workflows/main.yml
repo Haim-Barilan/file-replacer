@@ -22,12 +22,18 @@ jobs:
        
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
+      env:
+       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
      
     - name: Restore NuGet Packages
       run: nuget restore src\file-replacer.sln
+      env:
+       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
  
     - name: Build and Publish Web App
       run: msbuild src\file-replacer.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+      env:
+       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
  
     - name: Release with Notes
       uses: softprops/action-gh-release@v1
