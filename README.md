@@ -16,4 +16,4 @@
 
 
 ## Lazy approch
-If you don't want to build the solution you can grab the file-replacer.zip file from the [Release](https://github.com/Haim-Barilan/file-replacer/releases) page. Uncompress the file and run file-replacer.exe
+If you don't want to build the solution you can grab the file-replacer.zip file from the [Releases](https://github.com/Haim-Barilan/file-replacer/releases) page. Uncompress the file and run file-replacer.exe
